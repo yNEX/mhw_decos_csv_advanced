@@ -20,7 +20,7 @@ Utility for exporting your decorations inventory to Honey Hunter, directly from 
 - Add the .exe to the user %PATH% environment variabl to make it usable without beeing in the same folder as the .exe (works but more testing needed)
 
 # Releases
-.exe file is available in the exe folder
+https://github.com/yNEX/mhw_decos_csv_advanced/releases/latest
 
 # Requirements
 * Java 8u162+
