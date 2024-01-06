@@ -2,7 +2,6 @@
 .project
 .settings/
 .vscode/
-exe/*
 exporter/target/*
 savecrypt/target/*
 target/*
