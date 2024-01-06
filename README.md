@@ -53,6 +53,8 @@ Example: mhw_export_decos_cli.exe <input_file> -mhw -tw -of C:/output/
 * ~Export to MHW DB~
 * ~Create an executable and distribute~
 * Make it read from equipped slots
+* add additional user feedback for easier error handling
+* improve end user useability
 * Integrate decoCompare python tool
 
 # Credit
