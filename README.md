@@ -1,4 +1,4 @@
-Utility for exporting your decorations inventory to Honey Hunter, directly from your save-file.
+Utility for exporting your decorations inventory to Honey Hunter and [MHW-Wiki-DB](https://mhw.wiki-db.com/sim/?hl=en), directly from your save-file.
 
 
 
