@@ -16,15 +16,15 @@ Open your Terminal at the location of the downloaded executeable or just open th
 ```
 $ MHW-ExportDecos.exe <input_file> [options]
 Options:
-	-auto			Automatically search for the SAVEDATA1000 file
-	-mhw			Export decorations in MHW Wiki DB format (default)
-	-hh			Export decorations in Honeyhunter format
-	-jp			Use Japanese language for output
-	-tw			Use Traditional Chinese language for output
-	-s, -silent		Suppress success message
-	-o, -of, -output	Specify the output directory (default is the directory of the executable)
-	-ap, -addPath		Add path of the .exe to your user PATH variable
-	-h, -help		Show this usage message
+-auto			Automatically search for the SAVEDATA1000 file
+-mhw			Export decorations in MHW Wiki DB format (default)
+-hh			Export decorations in Honeyhunter format
+-jp			Use Japanese language for output
+-tw			Use Traditional Chinese language for output
+-s, -silent		Suppress success message
+-o, -of, -output	Specify the output directory (default is the directory of the executable)
+-ap, -addPath		Add path of the .exe to your user PATH variable
+-h, -help		Show this usage message
 
 You can adjust the filename by writing a string behind the last slash of output argument.
 For now, the default file name gets appended to your custom filename.
