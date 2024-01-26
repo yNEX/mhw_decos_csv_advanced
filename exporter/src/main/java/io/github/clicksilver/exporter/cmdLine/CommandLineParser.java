@@ -10,7 +10,7 @@ public class CommandLineParser {
         public boolean silentMode = false;
         public boolean jpLang = false;
         public boolean twLang = false;
-        public String outputPath = ""; // default is current directory
+        public String outputPath = "./"; // default is current directory
         public boolean addPath = false;
         public boolean showHelp = false;
     }
