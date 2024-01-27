@@ -20,5 +20,6 @@
     <requires64Bit>false</requires64Bit>
     <minVersion>8.0.0</minVersion>
     <maxVersion></maxVersion>
+    <opt>-Dlaunch4j.oldpwd=&quot;%OLDPWD%&quot;</opt>
   </jre>
 </launch4jConfig>

@@ -2,15 +2,17 @@ package io.github.clicksilver.exporter.cmdLine;
 
 
 public class CommandLineParser {
+    public static String startDir = System.getProperty("launch4j.oldpwd") + "\\"; // used to get the current directory of terminal
     // default parameters set for command line options
     public static class CommandLineOptions {
+
         public boolean autoSearch = false;
         public boolean generateHoneyHunter = false;
         public boolean generateWikiDB = true;
         public boolean silentMode = false;
         public boolean jpLang = false;
         public boolean twLang = false;
-        public String outputPath = "./"; // default is current directory
+        public String outputPath = startDir;
         public boolean addPath = false;
         public boolean showHelp = false;
     }
@@ -62,8 +64,8 @@ public class CommandLineParser {
                 case "-of":
                 case "-output":
                     if (i + 1 < args.length) {
-                        options.outputPath = args[i + 1];
-                        i++; // skip the next argument
+                        options.outputPath = startDir + args[i + 1];
+                        i++; // skip already processed path argument
                     }
                     break;
                 case "-ap":

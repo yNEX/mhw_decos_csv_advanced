@@ -136,8 +136,10 @@ public class App {
       }
     }
     if (pathAdded) {
+      System.out.println(options.outputPath);
       System.exit(0);
     }
+    System.out.println(options.outputPath);
     System.exit(0);
   }
 
