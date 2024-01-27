@@ -9,6 +9,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.Scanner;
+import java.awt.Desktop;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -37,6 +39,24 @@ public class App {
 
   // direct offsets into the decrypted save, where each decorations list starts
   static final int kSaveSlotDecosOffsets[] = new int[] { 4302696, 6439464, 8576232 };
+
+  private static String processPath(String path) {
+    // Replace forward slashes with backslashes
+    String correctedPath = path.replace('/', '\\');
+
+    // Remove any leading backslashes
+    correctedPath = correctedPath.replaceAll("^\\\\+", "");
+
+    // Remove duplicate backslashes
+    correctedPath = correctedPath.replaceAll("\\\\{2,}", "\\\\");
+
+    // Remove trailing backslash if not just a drive letter (e.g., "C:\")
+    if (correctedPath.length() > 3 && correctedPath.endsWith("\\")) {
+      correctedPath = correctedPath.substring(0, correctedPath.length() - 1);
+    }
+
+    return correctedPath;
+  }
 
   public static void main(String[] args) {
     CommandLineParser.CommandLineOptions options = CommandLineParser.parse(args);
@@ -75,6 +95,7 @@ public class App {
       p = Paths.get(args[0]);
     }
     if (p != null) {
+      options.outputPath = processPath(options.outputPath);
       try {
         byte[] save = Files.readAllBytes(p);
         byte[] decrypted_save = io.github.legendff.mhw.save.Savecrypt.decryptSave(save);
@@ -122,6 +143,29 @@ public class App {
               JOptionPane.INFORMATION_MESSAGE);
         }
 
+        if (options.outputPath != null) {
+          // Dynamically determine the output directory
+          String outputDirectory;
+          File outputFile = new File(options.outputPath);
+
+          if (outputFile.isDirectory()) {
+            outputDirectory = options.outputPath;
+          } else {
+            // Extract the directory part before the last "/"
+            int lastSeparatorIndex = options.outputPath.lastIndexOf(File.separator);
+            if (lastSeparatorIndex != -1) {
+              outputDirectory = options.outputPath.substring(0, lastSeparatorIndex);
+            } else {
+              outputDirectory = options.outputPath;
+            }
+          }
+
+          // Print the dynamically determined output directory
+          System.out.println("\nFile saved at " + outputDirectory);
+
+          waitForUserInput(options, outputDirectory);
+        }
+
       } catch (Exception e) {
         e.printStackTrace();
         System.out.println(e);
@@ -136,13 +180,37 @@ public class App {
       }
     }
     if (pathAdded) {
-      System.out.println("File is saved at " + options.outputPath);
       System.exit(0);
     }
     System.exit(0);
   }
 
-  // helper method to check if the destination folder exists and create of not, before trying to write output file
+  private static void waitForUserInput(CommandLineParser.CommandLineOptions options, String outputDirectory) {
+    Scanner scanner = new Scanner(System.in);
+    System.out.println("Press Enter to open the output path or type 'q' and press Enter to exit.");
+    String userInput = scanner.nextLine();
+    
+    if ("q".equalsIgnoreCase(userInput)) {
+      System.exit(0);
+    }
+    
+    scanner.close();
+    
+      try {
+        File directoryFile = new File(outputDirectory);
+        if (directoryFile.exists()) {
+          Desktop.getDesktop().open(directoryFile);
+        } else {
+          System.err.println("Output directory does not exist: " + outputDirectory);
+        }
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
+    }
+
+
+  // helper method to check if the destination folder exists and create of not,
+  // before trying to write output file
   private static FileWriter prepareFileWriter(String outputPath, String fileName) throws IOException {
     File file = new File(outputPath + fileName);
     if (!file.getParentFile().exists()) {
