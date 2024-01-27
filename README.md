@@ -45,6 +45,7 @@ https://github.com/yNEX/mhw_decos_csv_advanced/releases/latest
 * ~Decrypt the save file~
 * ~Export to MHW DB~
 * ~Create an executable and distribute~
+* Make specified output path relative to working directory
 * Make it read from equipped slots
 * Integrate [`decoCompare`](https://github.com/yNEX/MHW_decoExportCompare) Python tool*
 
