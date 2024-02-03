@@ -48,6 +48,7 @@ https://github.com/yNEX/mhw_decos_csv_advanced/releases/latest
 * ~Make specified output path relative to working directory~
 * Make it read from equipped slots
 * Integrate [`decoCompare`](https://github.com/yNEX/MHW_decoExportCompare) Python tool*
+* Make autosearch default when no file is provided
 
 *I've developed a Python tool, `decoCompare`, that efficiently compares two export lists, highlighting any differences. This tool provides flexibility, allowing exports in various formats such as Excel, Text, or as a command line table. Consideration for GitHub upload is on the horizon.
 
